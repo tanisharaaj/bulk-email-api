@@ -1,0 +1,22 @@
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+*.sqlite3
+
+# Creds / keys (NEVER COMMIT)
+gcp_service_account.json
+*.pem
+*.key
+*.crt
+
+# Build artifacts
+dist/
+build/

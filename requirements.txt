@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+sendgrid
+pandas
+gspread
+google-auth
+temporalio==1.*
