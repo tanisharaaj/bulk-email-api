@@ -1,20 +1,18 @@
-from pydantic import BaseModel, EmailStr
-from typing import List, Optional
-
-
-class MemberRequest(BaseModel):
-    member_id: str
-    email: EmailStr
-    brand_name: str
-    app_name: str
-    appstore_link: str
-    playstore_link: str
-    website_portal: str
-    cta_url: Optional[str] = None
+from pydantic import BaseModel, HttpUrl
+from typing import Optional
 
 
 class NotifyRequest(BaseModel):
-    members: List[MemberRequest]
+    # which Google Sheet tab to read from
+    sheet_tab: str
+
+    # shared parameters for all members in that tab
+    brand_name: str
+    app_name: str
+    appstore_link: HttpUrl
+    playstore_link: HttpUrl
+    website_portal: HttpUrl
+    cta_url: Optional[HttpUrl] = None
 
 
 class NotifyResponse(BaseModel):
