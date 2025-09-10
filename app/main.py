@@ -9,9 +9,25 @@ from app.models import NotifyRequest, NotifyResponse
 from app.workflows import NotifyMemberWorkflow
 from app.auth import require_auth
 
+
+from fastapi.middleware.cors import CORSMiddleware
+from app.settings import settings
+
 app = FastAPI(
     title="Member Email API",
-    swagger_ui_parameters={"persistAuthorization": True},  # 🔐 lock icon works
+    swagger_ui_parameters={"persistAuthorization": True},  # lock icon works
+)
+
+# parse comma-separated origins from env
+allowed_origins = [origin.strip() for origin in settings.ALLOWED_ORIGINS.split(",")]
+
+# enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 security = HTTPBearer()

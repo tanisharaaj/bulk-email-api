@@ -1,10 +1,8 @@
+from typing import List
 from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 
 load_dotenv()
-
-
-
 
 class Settings(BaseSettings):
     # Temporal
@@ -35,8 +33,10 @@ class Settings(BaseSettings):
     AUTH_JWT_ISSUER: str | None = None
     AUTH_JWT_AUDIENCE: str | None = None
 
+    # CORS
+    ALLOWED_ORIGINS: str  # must always be set in env
+
     class Config:
         env_file = ".env"
-
 
 settings = Settings()
