@@ -1,10 +1,8 @@
 from pydantic import BaseModel, EmailStr
-from dotenv import load_dotenv
-
-load_dotenv()
+from typing import List, Optional
 
 
-class NotifyRequest(BaseModel):
+class MemberRequest(BaseModel):
     member_id: str
     email: EmailStr
     brand_name: str
@@ -12,8 +10,11 @@ class NotifyRequest(BaseModel):
     appstore_link: str
     playstore_link: str
     website_portal: str
-    # Optional: call-to-action URL (you can still use it if needed)
-    cta_url: str | None = None
+    cta_url: Optional[str] = None
+
+
+class NotifyRequest(BaseModel):
+    members: List[MemberRequest]
 
 
 class NotifyResponse(BaseModel):
